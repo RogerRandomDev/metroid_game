@@ -39,7 +39,7 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position):
 	var entered_from = new_scene.get_node("enter_points").get_child(player_enter_point)
 	var enter_pos = entered_from.scene_enter_offset
 	current_point_offset-=(entered_from.position-my_position-Vector2(int(enter_pos.x!=0),-int(enter_pos.y!=0))*32)/16
-	$Camera2D/map_points/Viewport/Node2D.position+=((entered_from.position-my_position)/16)
+	$Camera2D/map_points/Viewport/Node2D.position+=((entered_from.position-my_position-Vector2(int(enter_pos.x!=0),-int(enter_pos.y!=0))*32))/16
 	if(!already_on_map.has(scene_name)):
 		already_on_map.append(scene_name)
 		generate_map(new_scene,Vector2(32,19))
