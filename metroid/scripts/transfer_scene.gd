@@ -9,6 +9,6 @@ export(Vector2)var scene_enter_size=Vector2(32,19)
 
 func _on_check_event_body_entered(body):
 	if body.name!="Player":return
-	get_parent().get_parent().get_parent().call_deferred('load_next_scene',scene_to_enter,scene_enter_size,scene_enter_point)
+	get_parent().get_parent().get_parent().call_deferred('load_next_scene',scene_to_enter,scene_enter_size,scene_enter_point,position)
 func enter_position():
 	return position+scene_enter_offset
