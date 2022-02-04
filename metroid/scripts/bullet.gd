@@ -10,6 +10,7 @@ var fired_by = null
 
 func _process(delta):
 	position+=direction*delta
+	rotation+=delta*5*PI
 
 
 func _on_bullet_body_entered(body):

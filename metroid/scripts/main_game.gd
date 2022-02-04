@@ -7,6 +7,7 @@ func _ready():pass
 var last_scene = null
 func load_next_scene(scene_name,view_size,player_enter_point):
 	if get_node_or_null("a")!=null:return
+	for bul in get_tree().get_nodes_in_group("bullet"):bul.queue_free()
 	last_scene = get_node_or_null("cur_scene")
 	if(get_node_or_null('last_scene')!=null):get_node_or_null("last_scene").queue_free()
 	if(last_scene!=null):
@@ -25,7 +26,7 @@ func load_next_scene(scene_name,view_size,player_enter_point):
 	$Camera2D.zoom = view_size/Vector2(32,19)
 	last_scene=get_node_or_null("last_scene")
 	if(last_scene!=null):
-		last_scene.position = $Camera2D.zoom*Vector2(32,19)*Vector2(-sign(entered_from.scene_enter_offset.x),sign(entered_from.scene_enter_offset.y+1))*32-Vector2(0,608)
+		last_scene.position = $Camera2D.zoom*Vector2(32,19)*Vector2(-sign(entered_from.scene_enter_offset.x),-sign(entered_from.scene_enter_offset.y))*32-Vector2(0,608*int(entered_from.scene_enter_offset.y==0))
 		$Camera2D.position=last_scene.position
 		$Tween.interpolate_property($Camera2D,"position",last_scene.position,new_scene.position,0.75,Tween.TRANS_CUBIC)
 		last_scene.name = "a"
