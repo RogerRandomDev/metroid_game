@@ -38,11 +38,11 @@ func _input(_event):
 	direction=Vector2.ZERO
 	if !can_input:return
 	direction.x = int(Input.is_action_pressed("right"))-int(Input.is_action_pressed("left"))
-	if Input.is_action_just_pressed("jump")&&(is_on_floor()||!double_jumped||($L.is_colliding()||$R.is_colliding())):
+	if Input.is_action_just_pressed("jump")&&(is_on_floor()||!double_jumped||(($L.is_colliding()||$R.is_colliding()))&&!is_on_ceiling()):
 		velocity.y = -jump_force
 		velocity.x += direction.x*move_speed/2
 		if(!is_on_floor()):
-			if(($L.is_colliding()||$R.is_colliding())):velocity.x = (int($L.is_colliding())-int($R.is_colliding()))*move_speed
+			if((($L.is_colliding()||$R.is_colliding())&&!is_on_ceiling())):velocity.x = (int($L.is_colliding())-int($R.is_colliding()))*move_speed
 			else:double_jumped=true
 		change_animation("jump")
 	if Input.is_action_pressed("shoot"):

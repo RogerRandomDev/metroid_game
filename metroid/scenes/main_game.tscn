@@ -35,7 +35,8 @@ render_target_update_mode = 3
 
 [node name="Node2D" type="Node2D" parent="Camera2D/map_points/Viewport"]
 modulate = Color( 1, 1, 1, 0.607843 )
-position = Vector2( 96, 55 )
+position = Vector2( 128, 75 )
+scale = Vector2( 2, 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Camera2D/map_points/Viewport"]
 anchor_mode = 0
