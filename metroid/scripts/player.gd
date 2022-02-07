@@ -13,9 +13,13 @@ export var can_move = true
 var double_jumped = false
 var spin = false
 var health = 10
+export var can_hurt=true
 export var can_input=true
+func _ready():
+	can_input=true
 func _process(delta):
 	if !can_move:return
+	check_cell(get_parent().get_cell_at_position(position))
 	if spin:
 		$Psprite.rotation += delta*PI*2*sign(velocity.x)
 	
@@ -46,9 +50,9 @@ func _input(_event):
 			else:double_jumped=true
 		change_animation("jump")
 	if Input.is_action_pressed("shoot"):
-		if !$PAnim.is_playing():
+		if !$PAnim.is_playing()||$PAnim.current_animation_position>=$PAnim.current_animation_length:
 			$PAnim.play("shoot")
-	elif !Input.is_action_pressed("shoot")&&$PAnim.current_animation=="shoot":
+	else:if !Input.is_action_pressed("shoot")&&$PAnim.current_animation=="shoot":
 		$PAnim.stop(false)
 func shoot():
 	var n_bul = bullet.instance()
@@ -75,7 +79,9 @@ func change_animation(val):
 	$Psprite.set_deferred("playing",true)
 
 func hit(val):
+	if !can_hurt:return
 	health-=val
+	$invul_anim.play("temp_invul")
 
 func _on_melee_hurt_body_entered(body):
 	if body.is_in_group("enemy"):
@@ -85,3 +91,10 @@ func _on_melee_hurt_body_entered(body):
 		velocity+=Vector2(cos(bounce_angle),sin(bounce_angle)-1)*128
 		hit(enemy_damage)
 		$PAnim.play("hurt")
+
+
+func _on_PAnim_animation_finished(_anim_name):
+	$PAnim.stop()
+func check_cell(cell_id):
+	if cell_id==3:
+		velocity.y= -256

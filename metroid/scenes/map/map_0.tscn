@@ -51,3 +51,27 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label3" type="Label" parent="." index="5"]
+margin_left = 104.0
+margin_top = 480.0
+margin_right = 248.0
+margin_bottom = 528.0
+text = "Shoot enemies to kill them"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="." index="6"]
+margin_left = 296.0
+margin_top = 216.0
+margin_right = 440.0
+margin_bottom = 264.0
+text = "Hitting an enemy hurts you"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

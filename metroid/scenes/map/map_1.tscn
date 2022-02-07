@@ -40,3 +40,15 @@ position = Vector2( 520, 149 )
 crawl_on_floor = true
 move_speed = 16
 move_distance = 128
+
+[node name="Label" type="Label" parent="." index="3"]
+margin_left = 608.0
+margin_top = 208.0
+margin_right = 704.0
+margin_bottom = 324.0
+text = "Some enemies can shoot at you!"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
