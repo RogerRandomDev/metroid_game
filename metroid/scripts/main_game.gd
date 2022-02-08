@@ -150,6 +150,7 @@ func reload_scene():
 		current.queue_free()
 	var new_scene = load("res://scenes/map/"+cur_Scene_name+".tscn").instance()
 	new_scene.name = "cur_scene"
+# warning-ignore:unused_variable
 	var scene_name = cur_Scene_name
 	var dat = cur_Scene_data
 	for ent in new_scene.get_node("Entities").get_child_count():

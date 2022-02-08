@@ -134,9 +134,9 @@ __meta__ = {
 }
 
 [node name="HP_label" type="Label" parent="CanvasLayer/stat_panel"]
-margin_left = 136.0
+margin_left = 72.0
 margin_top = 23.0
-margin_right = 176.0
+margin_right = 112.0
 margin_bottom = 39.0
 rect_scale = Vector2( 2, 2 )
 theme = ExtResource( 6 )
@@ -148,8 +148,8 @@ __meta__ = {
 }
 
 [node name="HP_label_front" type="Label" parent="CanvasLayer/stat_panel/HP_label"]
-margin_left = -64.0
-margin_right = -1.0
+margin_left = -25.0
+margin_right = 2.0
 margin_bottom = 16.0
 theme = ExtResource( 6 )
 custom_colors/font_color = Color( 0.564706, 0.607843, 1, 1 )
@@ -159,7 +159,7 @@ custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = 0
 custom_constants/shadow_offset_y = 1
 custom_fonts/font = ExtResource( 7 )
-text = "ENERGY:"
+text = "EN:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
