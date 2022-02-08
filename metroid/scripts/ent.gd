@@ -18,6 +18,9 @@ export(int,1,40)var health=10
 export(int,0,10)var damage=1
 export(bool)var shoots=false
 export(PackedScene)var bullets
+export(bool)var curved_motion=false
+export(float)var curved_time=2.0
+export(Vector2)var curve_size=Vector2(64,64)
 var moved_dist=0
 var player = null
 func _ready():
@@ -26,6 +29,10 @@ func _ready():
 func _process(delta):
 	if $Timer.time_left!=0:return
 	var travel_dist = move_speed*delta
+	if curved_motion:
+		moved_dist+=delta*PI/curved_time
+		do_curved_motion()
+		return
 	if(move_distance!=-1):
 		moved_dist+=travel_dist
 		if(moved_dist>=move_distance||is_on_wall()||(on_ledge()&&crawl_on_floor)):
@@ -37,10 +44,11 @@ func _process(delta):
 			$Sprite.flip_h = move_direction!=-1
 # warning-ignore:return_value_discarded
 	move_and_slide(Vector2(int(!vertical_motion),int(vertical_motion))*travel_dist*move_direction/delta,Vector2.UP)
+var non_continuous=false
 func hit(val):
 	health-=val
 	if health<=0:
-		get_parent().get_parent().get_parent().remove_char_from_scene(parent_point)
+		if !non_continuous:get_parent().get_parent().get_parent().remove_char_from_scene(parent_point)
 		self.queue_free()
 func shoot():
 	if !player.can_move:return
@@ -48,6 +56,12 @@ func shoot():
 	n_bul.fired_by="enemy"
 	n_bul.position=position
 	n_bul.direction = Vector2(-256,0).rotated(position.angle_to_point(player.position))
+	n_bul.damage = damage*2
 	get_parent().get_parent().get_parent().add_child(n_bul)
 func on_ledge():
 	return !($L.is_colliding()&&$R.is_colliding())
+func do_curved_motion():
+	var motion = Vector2(sin(moved_dist),cos(moved_dist))*curve_size
+# warning-ignore:return_value_discarded
+	move_and_slide(motion,Vector2.UP)
+	if moved_dist>=PI:self.queue_free()

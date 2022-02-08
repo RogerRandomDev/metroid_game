@@ -4,10 +4,18 @@ func _ready():
 func remove_self():
 	get_parent().get_parent().get_parent().remove_char_from_scene(0)
 	queue_free()
+
+
 func remove_cells(cell_array=[]):
 	for cell in cell_array:
 		get_parent().get_parent().get_node("TileMap").set_cellv(cell,-1)
 		get_parent().get_parent().get_parent().update_current_texture(cell,Color(0.25,0.25,0.25))
+func shake_screen(val):
+	get_parent().get_parent().get_parent().get_node("Camera2D").add_trauma(val)
+
+
+
+
 func trigger_animation():
 	$AnimationPlayer.playback_speed=1000
 	if $AnimationPlayer.has_animation("first_enter"):

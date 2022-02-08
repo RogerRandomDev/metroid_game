@@ -7,6 +7,7 @@ var already_on_map = []
 var my_size = Vector2(32,19)
 var prev_scene = null
 var prev_scene_size = Vector2(32,19)
+var points = 0
 func _ready():
 	cur_Scene_name="map_0"
 	var scene_name = cur_Scene_name
@@ -18,6 +19,7 @@ func _ready():
 			en_dat.append(true)
 		store_data["Ent"]=en_dat
 		stored_scenes[scene_name]=store_data
+		cur_Scene_data=store_data.duplicate(true)
 	else:
 		var dat = stored_scenes[scene_name]
 		for ent in new_scene.get_node("Entities").get_child_count():
@@ -55,7 +57,7 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 		prev_scene_offset=current_point_offset
 		current_point_offset+=view_size*sign_of_scene
 		my_size=view_size
-	$Camera2D/map_points/Viewport/Node2D.position= -current_point_offset*2+Vector2(128,75)-view_size
+	$CanvasLayer/map_points/Viewport/Node2D.position= -current_point_offset*2+Vector2(128,75)-view_size
 	if(enter_pos.x==0):enter_pos.x=p_pos.x;else:enter_pos.x=entered_from.enter_position().x
 	if(enter_pos.y==0):enter_pos.y=p_pos.y;else:enter_pos.y=entered_from.enter_position().y
 	if(!stored_scenes.has(scene_name)):
@@ -65,6 +67,7 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 			en_dat.append(true)
 		store_data["Ent"]=en_dat
 		stored_scenes[scene_name]=store_data
+		cur_Scene_data=store_data.duplicate(true)
 	else:
 		var dat = stored_scenes[scene_name]
 		for ent in new_scene.get_node("Entities").get_child_count():
@@ -90,12 +93,13 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 		var t_pos = $Camera2D.position
 		$Camera2D.position = $Player.position
 		$Camera2D.update_pos()
-		var n_pos = $Camera2D.position
+		var n_pos = $Camera2D.position+Vector2(512,308)
 		$Tween.interpolate_property($Camera2D,"position",t_pos,n_pos,0.75,Tween.TRANS_CUBIC)
 		last_scene.name = "a"
 		$Player.can_move=false
 		$Tween.start()
 	prev_scene=new_scene
+	$Player.store_stats()
 	
 
 func _on_Tween_tween_all_completed():
@@ -121,10 +125,11 @@ func generate_map(scene_from,cur_Scene_size,_scene_sign):
 	tex.create_from_image(img,4)
 	var map_sprite = Sprite.new()
 	map_sprite.texture = tex
-	$Camera2D/map_points/Viewport/Node2D.add_child(map_sprite)
+	$CanvasLayer/map_points/Viewport/Node2D.add_child(map_sprite)
 	map_sprite.position = current_point_offset+cur_Scene_size*_scene_sign
 	map_sprite.centered = false
 	current_texture = [map_sprite,img]
+var cur_Scene_data = {}
 func update_current_texture(cell,color):
 	if current_texture[0]==null:return
 	var text = ImageTexture.new()
@@ -138,3 +143,22 @@ func get_cell_at_position(pos):
 	var current = get_node_or_null("cur_scene/TileMap")
 	if current!=null:
 		return current.get_cellv(out)
+func reload_scene():
+	var current = get_node_or_null("cur_scene")
+	if current!=null:
+		current.name="a"
+		current.queue_free()
+	var new_scene = load("res://scenes/map/"+cur_Scene_name+".tscn").instance()
+	new_scene.name = "cur_scene"
+	var scene_name = cur_Scene_name
+	var dat = cur_Scene_data
+	for ent in new_scene.get_node("Entities").get_child_count():
+		if !dat["Ent"][ent]:
+			var n_ent = new_scene.get_node("Entities").get_child(ent)
+			if n_ent.has_method("trigger_animation"):
+				n_ent.trigger_animation()
+			else:
+				n_ent.queue_free()
+	call_deferred('add_child',new_scene)
+func update_player_health(val):
+	$CanvasLayer/stat_panel/HP_label.text = str(val)

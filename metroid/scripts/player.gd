@@ -12,11 +12,14 @@ export(int)var move_speed=128
 export var can_move = true
 var double_jumped = false
 var spin = false
-var health = 10
+var health = 100
+
+var stats_on_scene_enter=[10,Vector2(0,0)]
 export var can_hurt=true
 export var can_input=true
 func _ready():
 	can_input=true
+	store_stats()
 func _process(delta):
 	if !can_move:return
 	check_cell(get_parent().get_cell_at_position(position))
@@ -82,6 +85,11 @@ func hit(val):
 	if !can_hurt:return
 	health-=val
 	$invul_anim.play("temp_invul")
+	get_parent().get_node("Camera2D").add_trauma(val/20+0.125)
+	if health <= 0:
+		get_parent().get_node("scene_Anims").play("player_dead")
+		get_parent().reload_scene()
+	get_parent().update_player_health(health)
 
 func _on_melee_hurt_body_entered(body):
 	if body.is_in_group("enemy"):
@@ -98,3 +106,12 @@ func _on_PAnim_animation_finished(_anim_name):
 func check_cell(cell_id):
 	if cell_id==3:
 		velocity.y= -256
+		velocity.x *=0.5
+		hit(1)
+func store_stats():
+	stats_on_scene_enter=[health,position,get_parent().points]
+func load_stats():
+	health = stats_on_scene_enter[0]
+	position = stats_on_scene_enter[1]
+	get_parent().points = stats_on_scene_enter[2]
+	get_parent().update_player_health(health)
