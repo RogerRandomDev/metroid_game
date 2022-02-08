@@ -6,3 +6,6 @@ func _process(_delta):
 	position = get_parent().get_node("Player").position-Vector2(512,300)
 	position.x = clamp(position.x,0,camera_limits.x)
 	position.y = clamp(position.y,0,camera_limits.y)
+func update_pos():
+	position.x = clamp(position.x,0,camera_limits.x)
+	position.y = clamp(position.y,0,camera_limits.y)

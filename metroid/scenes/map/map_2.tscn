@@ -15,12 +15,14 @@ scale = Vector2( 8, 1 )
 scene_to_enter = "map_1"
 scene_enter_point = 1
 scene_enter_offset = Vector2( 0, 32 )
+scene_sign = Vector2( 0, -1 )
 
 [node name="check_event4" parent="enter_points" index="1" instance=ExtResource( 2 )]
 position = Vector2( 1040, 352 )
 scale = Vector2( 1, 2 )
 scene_to_enter = "map_3"
 scene_enter_offset = Vector2( -32, 0 )
+scene_sign = Vector2( 1, 0 )
 
 [node name="check_event5" parent="enter_points" index="2" instance=ExtResource( 2 )]
 position = Vector2( 1040, 544 )
@@ -28,11 +30,13 @@ scale = Vector2( 1, 2 )
 scene_to_enter = "map_3"
 scene_enter_point = 1
 scene_enter_offset = Vector2( -32, 0 )
+scene_sign = Vector2( 1, 0 )
 
 [node name="check_event6" parent="enter_points" index="3" instance=ExtResource( 2 )]
 position = Vector2( 960, 624 )
 scale = Vector2( 2, 1 )
 scene_to_enter = "map_4"
+scene_sign = Vector2( 0, 1 )
 
 [node name="Ent" parent="Entities" index="0" instance=ExtResource( 3 )]
 position = Vector2( 624, 472 )

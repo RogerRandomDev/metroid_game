@@ -15,12 +15,14 @@ scale = Vector2( 2, 1 )
 scene_to_enter = "map_2"
 scene_enter_point = 3
 scene_enter_offset = Vector2( 0, 32 )
+scene_sign = Vector2( 0, -1 )
 
 [node name="check_event2" parent="enter_points" index="1" instance=ExtResource( 2 )]
 position = Vector2( -16, 544 )
 scale = Vector2( 1, 2 )
 scene_to_enter = "map_5"
 scene_enter_offset = Vector2( 32, 0 )
+scene_sign = Vector2( -1, 0 )
 
 [node name="Ent" parent="Entities" index="0" instance=ExtResource( 3 )]
 position = Vector2( 176, 120 )

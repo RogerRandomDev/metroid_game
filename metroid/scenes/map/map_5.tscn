@@ -41,7 +41,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 9.99, 10 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ [ Vector2( 0, 16 ), Vector2( 0, 17 ) ] ],
+"args": [ [ Vector2( 0, 14 ), Vector2( 0, 15 ) ] ],
 "method": "remove_cells"
 }, {
 "args": [  ],
@@ -60,13 +60,15 @@ scale = Vector2( 1, 2 )
 scene_to_enter = "map_4"
 scene_enter_point = 1
 scene_enter_offset = Vector2( -32, 0 )
+scene_sign = Vector2( 1, 0 )
 
 [node name="check_event3" parent="enter_points" index="1" instance=ExtResource( 2 )]
-position = Vector2( -16, 544 )
+position = Vector2( -16, 480 )
 scale = Vector2( 1, 2 )
 scene_to_enter = "map_6"
 scene_enter_offset = Vector2( 64, 0 )
 scene_enter_size = Vector2( 74, 19 )
+scene_sign = Vector2( -1, 0 )
 
 [node name="placeholder" type="Node2D" parent="Entities" index="0"]
 script = ExtResource( 3 )
@@ -87,4 +89,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Entities/placeholder" index="1"]
 root_node = NodePath("../../..")
+playback_speed = 20.0
 anims/first_enter = SubResource( 1 )
