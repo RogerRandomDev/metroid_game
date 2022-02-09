@@ -32,7 +32,7 @@ var last_scene = null
 var cur_Scene_name=""
 var prev_scene_offset=Vector2.ZERO
 # warning-ignore:unused_argument
-func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_offset,sign_of_scene):
+func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_offset,sign_of_scene,increase_offset_by):
 	var returned_to_prior = false
 	if get_node_or_null("a")!=null:return
 	for bul in get_tree().get_nodes_in_group("bullet"):bul.queue_free()
@@ -46,6 +46,7 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 	cur_Scene_name=scene_name
 	var p_pos = $Player.position
 	var entered_from = new_scene.get_node("enter_points").get_child(player_enter_point)
+	current_point_offset+=increase_offset_by
 	var enter_pos = entered_from.scene_enter_offset
 	if(!already_on_map.has(scene_name)):
 		already_on_map.append(scene_name)
