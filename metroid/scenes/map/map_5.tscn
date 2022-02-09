@@ -8,26 +8,14 @@
 [sub_resource type="Animation" id=1]
 resource_name = "first_enter"
 length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Entities/placeholder/Label:visible_characters")
+tracks/0/type = "method"
+tracks/0/path = NodePath("Entities/placeholder")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2, 3.49, 3.5, 7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0, 32, 32, 0, 61 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("Entities/placeholder")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 9.73, 9.99, 10 ),
+"times": PoolRealArray( 9.7, 9.99, 10 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ 0.25 ],
@@ -40,17 +28,29 @@ tracks/1/keys = {
 "method": "remove_self"
 } ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Entities/placeholder/Label:bbcode_text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.49, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "[shake rate=8 level=15]I applaud you making it this far[/shake]", "[shake rate=8 level=15]I applaud you making it this far[/shake]", "[shake rate=8 level=15]But you will find it far more troublesome now that you've gained my ire...[/shake]" ]
+}
 tracks/2/type = "value"
-tracks/2/path = NodePath("Entities/placeholder/Label:bbcode_text")
+tracks/2/path = NodePath("Entities/placeholder/Label:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 3.49, 3.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ "[shake rate=8 level=15]I applaud you making it this far[/shake]", "[shake rate=8 level=15]I applaud you making it this far[/shake]", "[shake rate=8 level=15]But you will find it far more troublesome now that you've gained my ire...[/shake]" ]
+"times": PoolRealArray( 0, 2, 3.49, 3.5, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0, 1.0 ]
 }
 
 [node name="holder" instance=ExtResource( 1 )]
@@ -86,7 +86,11 @@ theme = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=8 level=15]I applaud you making it this far[/shake]"
 visible_characters = 0
+percent_visible = 0.0
 text = "I applaud you making it this far"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Entities/placeholder" index="1"]
 root_node = NodePath("../../..")

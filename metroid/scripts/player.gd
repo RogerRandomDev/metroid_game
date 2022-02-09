@@ -79,11 +79,12 @@ func change_animation(val):
 		$Psprite.rotation=0
 		$CollisionShape2D.shape.extents=Vector2(15,22)
 		$CollisionShape2D.position.y=2
+	$melee_hurt/CollisionShape2D.shape.extents = $CollisionShape2D.shape.extents+Vector2(3,3)
 	$Psprite.set_deferred("playing",true)
 
 func hit(val):
 	if !can_hurt:return
-	health-=val
+	health = max(health-val,0)
 	$invul_anim.play("temp_invul")
 	get_parent().get_node("Camera2D").add_trauma(val/20+0.125)
 	if health <= 0:
@@ -99,6 +100,10 @@ func _on_melee_hurt_body_entered(body):
 		velocity+=Vector2(cos(bounce_angle),sin(bounce_angle)-1)*128
 		hit(enemy_damage)
 		$PAnim.play("hurt")
+	if body.is_in_group("heal_item"):
+		body.queue_free()
+		health=min(health+5,100)
+		get_parent().update_player_health(health)
 
 
 func _on_PAnim_animation_finished(_anim_name):
@@ -106,7 +111,6 @@ func _on_PAnim_animation_finished(_anim_name):
 func check_cell(cell_id):
 	if cell_id==3:
 		velocity.y= -256
-		velocity.x *=0.5
 		hit(1)
 func store_stats():
 	stats_on_scene_enter=[health,position,get_parent().points]

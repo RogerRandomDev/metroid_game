@@ -23,7 +23,9 @@ export(float)var curved_time=2.0
 export(Vector2)var curve_size=Vector2(64,64)
 var moved_dist=0
 var player = null
+const heal_item = preload("res://scenes/objects/item.tscn")
 func _ready():
+	randomize()
 	player = get_tree().get_nodes_in_group("player")[0]
 	if shoots:$AnimationPlayer.play("shoot")
 func _process(delta):
@@ -49,6 +51,7 @@ func hit(val):
 	health-=val
 	if health<=0:
 		if !non_continuous:get_parent().get_parent().get_parent().remove_char_from_scene(parent_point)
+		if rand_range(0.0,1.0)>0.75:generate_heal_drop()
 		self.queue_free()
 func shoot():
 	if !player.can_move:return
@@ -65,3 +68,7 @@ func do_curved_motion():
 # warning-ignore:return_value_discarded
 	move_and_slide(motion,Vector2.UP)
 	if moved_dist>=PI:self.queue_free()
+func generate_heal_drop():
+	var drop = heal_item.instance()
+	drop.position = position
+	get_parent().get_parent().get_node("misc").call_deferred('add_child',drop)
