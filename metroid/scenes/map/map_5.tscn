@@ -79,9 +79,9 @@ script = ExtResource( 3 )
 
 [node name="Label" type="RichTextLabel" parent="Entities/placeholder" index="0"]
 margin_left = 384.0
-margin_top = 128.0
+margin_top = 192.0
 margin_right = 640.0
-margin_bottom = 192.0
+margin_bottom = 256.0
 theme = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=8 level=15]I applaud you making it this far[/shake]"

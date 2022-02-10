@@ -98,15 +98,37 @@ func on_ledge():return !($L.is_colliding()&&$R.is_colliding())
 #
 ##
 func do_curved_motion():
+	##
+	#curves motion using trig
+	#the curve_size declares how far of a curve it will be
+	##
 	var motion = Vector2(sin(moved_dist),cos(moved_dist))*curve_size
 # warning-ignore:return_value_discarded
 	move_and_slide(motion,Vector2.UP)
 	rotation = motion.normalized().angle_to_point(Vector2.ZERO)+PI/2
 	if moved_dist>=PI:self.queue_free()
+
+##
+#exactly as it says
+#creates a healing object
+##
 func generate_heal_drop():
 	var drop = heal_item.instance()
 	drop.position = position
 	get_parent().get_parent().get_node("misc").call_deferred('add_child',drop)
+
+
+##
+#if you shoot, then it moves you over to the second row of entity textures
+#otherwise, it remains in the first row
+#lots of math for the spritesheet layout to work
+#but hey, maths not that bad if you know how to use it
+##
 func randomize_texture():
 	var randomized_id = int(round(rand_range(0.0,13.0))+int(shoots)*14);
-	$Sprite.region_rect=Rect2(Vector2(10*int(randomized_id%2==0)+30*int(max(round(randomized_id/14-0.5),0)),10*(randomized_id%14)),Vector2(10,10))
+	$Sprite.region_rect=Rect2(
+		Vector2(
+			((10*int(randomized_id%2==0))+
+			(30*int(max(round(randomized_id/14-0.5),0)))),
+			10*(randomized_id%14)),Vector2(10,10)
+			)

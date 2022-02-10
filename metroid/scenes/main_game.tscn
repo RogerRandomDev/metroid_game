@@ -7,27 +7,10 @@
 [ext_resource path="res://scenes/Camera2D.gd" type="Script" id=5]
 [ext_resource path="res://theme.tres" type="Theme" id=6]
 [ext_resource path="res://fonts/font.tres" type="DynamicFont" id=7]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.6, 0.6, 0.6, 0.215686 )
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color( 0.192157, 1, 0, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource path="res://textures/tile_base.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.6, 0.6, 0.6, 0.411765 )
-border_width_left = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color( 0, 1, 0, 1 )
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+bg_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "player_dead"
@@ -115,23 +98,42 @@ scale = Vector2( 2, 2 )
 anchor_mode = 0
 current = true
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="NinePatchRect" parent="CanvasLayer/map_points"]
 margin_right = 256.0
 margin_bottom = 150.0
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 8 )
+draw_center = false
+region_rect = Rect2( 320, 48, 48, 48 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
-[node name="stat_panel" type="Panel" parent="CanvasLayer"]
-margin_left = 264.0
-margin_top = 1.0
-margin_right = 464.0
-margin_bottom = 119.0
+[node name="backing" type="Panel" parent="CanvasLayer/map_points"]
+self_modulate = Color( 0, 0, 0, 0.580392 )
+show_behind_parent = true
+margin_right = 256.0
+margin_bottom = 152.0
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="stat_panel" type="NinePatchRect" parent="CanvasLayer"]
+margin_left = 264.0
+margin_right = 464.0
+margin_bottom = 149.0
+texture = ExtResource( 8 )
+draw_center = false
+region_rect = Rect2( 376, 48, 48, 48 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="HP_label" type="Label" parent="CanvasLayer/stat_panel"]
 margin_left = 72.0
@@ -160,6 +162,16 @@ custom_constants/line_spacing = 0
 custom_constants/shadow_offset_y = 1
 custom_fonts/font = ExtResource( 7 )
 text = "EN:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backing" type="Panel" parent="CanvasLayer/stat_panel"]
+self_modulate = Color( 0, 0, 0, 0.580392 )
+show_behind_parent = true
+margin_right = 200.0
+margin_bottom = 149.0
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

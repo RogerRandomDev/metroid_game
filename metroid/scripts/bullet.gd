@@ -1,19 +1,27 @@
 extends Area2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var direction = Vector2.ZERO
 var fired_by = null
 var damage = 1
+
+
+#moves by direction value
+#and rotates by a set value
 func _process(delta):
 	position+=direction*delta
 	rotation+=delta*5*PI
 
 
+##
+#this is the bulk of the bullet logic
+#checks if it is inside the one who fired it or not first
+#and then it will check if the target has a hit method
+#finally, it checks if it hit the map
+#and if so will remove the surrounding breakable tiles
+##
 func _on_bullet_body_entered(body):
+	
 	if body.is_in_group(fired_by):return
 	if(body.has_method("hit")):body.hit(damage)
 	if(body.get_class()=="TileMap"):
