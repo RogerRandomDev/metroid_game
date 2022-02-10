@@ -8,7 +8,7 @@
 resource_name = "open_game"
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("anim_objects/Player_right:position")
+tracks/0/path = NodePath("main_page/anim_objects/Player_right:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1240, 536 ), Vector2( 960, 200 ), Vector2( 900, 150 ), Vector2( 512, 472 ), Vector2( 544, 472 ), Vector2( 544, 472 ), Vector2( 512, 472 ), Vector2( -64, 472 ), Vector2( -64, -128 ), Vector2( 640, -128 ), Vector2( 640, -128 ), Vector2( 640, 472 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_objects/Player_right:rotation_degrees")
+tracks/1/path = NodePath("main_page/anim_objects/Player_right:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -32,7 +32,7 @@ tracks/1/keys = {
 "values": [ 0.0, -360.0, -345.0, -285.0, -360.0, -360.0, -345.0, -360.0, -375.0, -360.0, -345.0, -360.0, -375.0, -360.0, -345.0, -360.0, -375.0, -360.0, -345.0, -360.0, -375.0, -360.0, -360.0, -375.0, -360.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("anim_objects/Player_right:scale")
+tracks/2/path = NodePath("main_page/anim_objects/Player_right:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -44,7 +44,7 @@ tracks/2/keys = {
 "values": [ Vector2( 16, 16 ), Vector2( 16, 16 ), Vector2( -16, 16 ), Vector2( -16, 16 ), Vector2( 16, 16 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Label:rect_position")
+tracks/3/path = NodePath("main_page/Label:rect_position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -56,7 +56,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1408, 448 ), Vector2( 1408, 448 ), Vector2( 256, 448 ), Vector2( 256, 448 ), Vector2( 256, 75 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Button:rect_scale")
+tracks/4/path = NodePath("main_page/Button:rect_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -68,7 +68,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 4.5, 4.5 ), Vector2( 3, 3 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Button:rect_position")
+tracks/5/path = NodePath("main_page/Button:rect_position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -78,6 +78,30 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 512, 256 ), Vector2( 512, 256 ), Vector2( 404, 228.5 ), Vector2( 440, 256 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("main_page/settings:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 4, 4.2, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, 320 ), Vector2( 512, 320 ), Vector2( 350, 292.5 ), Vector2( 404, 320 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("main_page/settings:rect_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 4, 4.2, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1e-05, 1e-05 ), Vector2( 4.5, 4.5 ), Vector2( 3, 3 ) ]
 }
 
 [sub_resource type="StyleBoxEmpty" id=2]
@@ -98,33 +122,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 256.0
-margin_top = 448.0
-margin_right = 384.0
-margin_bottom = 464.0
-rect_scale = Vector2( 4, 4 )
-theme = ExtResource( 1 )
-text = "1-Bit Game"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TitleAnim" type="AnimationPlayer" parent="."]
 anims/open_game = SubResource( 1 )
 
-[node name="anim_objects" type="Node2D" parent="."]
+[node name="main_page" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Player_right" type="Sprite" parent="anim_objects"]
-position = Vector2( -64, 472 )
-rotation = -6.28319
-scale = Vector2( 16, 16 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 10, 0, 8, 10 )
-
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="main_page"]
 margin_left = 512.0
 margin_top = 256.0
 margin_right = 560.0
@@ -141,4 +146,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[node name="settings" type="Button" parent="main_page"]
+margin_left = 512.0
+margin_top = 320.0
+margin_right = 584.0
+margin_bottom = 340.0
+rect_scale = Vector2( 1e-05, 1e-05 )
+theme = ExtResource( 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "SETTINGS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim_objects" type="Node2D" parent="main_page"]
+
+[node name="Player_right" type="Sprite" parent="main_page/anim_objects"]
+position = Vector2( 1240, 536 )
+scale = Vector2( 16, 16 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 10, 0, 8, 10 )
+
+[node name="Label" type="Label" parent="main_page"]
+margin_left = 1408.0
+margin_top = 448.0
+margin_right = 1536.0
+margin_bottom = 464.0
+rect_scale = Vector2( 4, 4 )
+theme = ExtResource( 1 )
+text = "1-Bit Game"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings_page" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="main_page/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="main_page/settings" to="." method="_on_settings_pressed"]

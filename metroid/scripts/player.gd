@@ -35,7 +35,7 @@ func _process(delta):
 	velocity += direction*delta*move_speed
 	velocity.y+=gravity*delta
 	
-	if is_on_floor()&&velocity.y > 0&&can_input:
+	if is_on_floor()&&velocity.y > -1&&can_input:
 		velocity.y = 0
 		velocity.x -= velocity.x*delta*10*int(direction.x==0||sign(direction.x)!=sign(velocity.x))
 		double_jumped = false
