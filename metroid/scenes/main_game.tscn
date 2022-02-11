@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/main_game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://theme.tres" type="Theme" id=6]
 [ext_resource path="res://fonts/font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://textures/tile_base.png" type="Texture" id=8]
+[ext_resource path="res://scenes/pause_menu.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 1, 1, 1 )
@@ -178,5 +179,7 @@ __meta__ = {
 
 [node name="scene_Anims" type="AnimationPlayer" parent="."]
 anims/player_dead = SubResource( 2 )
+
+[node name="pause_menu" parent="." instance=ExtResource( 9 )]
 
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

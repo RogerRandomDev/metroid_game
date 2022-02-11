@@ -35,7 +35,7 @@ func _process(delta):
 	velocity += direction*delta*move_speed
 	velocity.y+=gravity*delta
 	
-	if is_on_floor()&&velocity.y > -1&&can_input:
+	if floor_check()&&can_input&&velocity.y>0:
 		velocity.y = 0
 		velocity.x -= velocity.x*delta*10*int(direction.x==0||sign(direction.x)!=sign(velocity.x))
 		double_jumped = false
@@ -57,18 +57,20 @@ func _input(_event):
 	if !can_input:return
 	
 	direction.x = int(Input.is_action_pressed("right"))-int(Input.is_action_pressed("left"))
-	if Input.is_action_just_pressed("jump")&&(is_on_floor()||!double_jumped||(($L.is_colliding()||$R.is_colliding()))&&!is_on_ceiling()):
-		velocity.y = -jump_force
-		velocity.x += direction.x*move_speed*2
-		
-		if(!is_on_floor()):
+	if Input.is_action_just_pressed("jump")&&(floor_check()||!double_jumped||(($L.is_colliding()||$R.is_colliding()))&&!is_on_ceiling()):
+		if(!floor_check()):
 			#checks if on wall to enable wall jumps
 			if((($L.is_colliding()||$R.is_colliding())&&!is_on_ceiling())):
 				velocity.x = (int($L.is_colliding())-int($R.is_colliding()))*move_speed
 			else:
 				#if not on wall, set it to a double jump
 				double_jumped=true
+		else:
+			double_jumped=false
+		velocity.y = -jump_force
+		velocity.x += direction.x*move_speed*2
 		change_animation("jump")
+		Global.load_audio("jump")
 	
 	if Input.is_action_pressed("shoot"):
 		if !$PAnim.is_playing()||$PAnim.current_animation_position>=$PAnim.current_animation_length:
@@ -97,6 +99,7 @@ func change_animation(val):
 func hit(val):
 	if !can_hurt:return
 	health = max(health-val,0)
+	Global.load_audio("hit_sound")
 	$invul_anim.play("temp_invul")
 	get_parent().get_node("Camera2D").add_trauma(val/20+0.125)
 	if health <= 0:
@@ -144,3 +147,5 @@ func load_stats():
 	get_parent().points = stats_on_scene_enter[2]
 	get_parent().update_player_health(health)
 	velocity=Vector2.ZERO
+func floor_check():
+	return $floor_check.is_colliding()

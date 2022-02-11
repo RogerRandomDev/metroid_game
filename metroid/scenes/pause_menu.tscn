@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/pause_menu.gd" type="Script" id=2]
+
+[node name="pause_menu" type="CanvasLayer"]
+pause_mode = 2
+
+[node name="Control" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 608.0
+margin_bottom = 608.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+margin_top = 200.0
+margin_right = 512.0
+margin_bottom = 216.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 1 )
+text = "PAUSED"
+align = 1
+
+[node name="cont" type="Button" parent="Control"]
+margin_left = 476.0
+margin_top = 264.0
+margin_right = 548.0
+margin_bottom = 284.0
+theme = ExtResource( 1 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="return" type="Button" parent="Control"]
+margin_left = 449.0
+margin_top = 296.0
+margin_right = 575.0
+margin_bottom = 316.0
+theme = ExtResource( 1 )
+text = "Return to menu"
+
+[node name="Tween" type="Tween" parent="Control"]
+
+[connection signal="pressed" from="Control/cont" to="Control" method="_on_cont_pressed"]
+[connection signal="pressed" from="Control/return" to="Control" method="_on_return_pressed"]

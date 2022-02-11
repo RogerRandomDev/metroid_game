@@ -4,8 +4,9 @@ extends Area2D
 var direction = Vector2.ZERO
 var fired_by = null
 var damage = 1
-
-
+#plays firing sound on load
+func _ready():
+	Global.load_audio("shoot")
 #moves by direction value
 #and rotates by a set value
 func _process(delta):
