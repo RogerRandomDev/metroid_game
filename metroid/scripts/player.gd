@@ -43,14 +43,13 @@ func _process(delta):
 	#makes you spin when in air
 		$Psprite.rotation += delta*PI*2*sign(velocity.x)
 	
-	velocity += direction*delta*move_speed
+	velocity += direction*delta*move_speed*4
 	velocity.y+=gravity*delta
-	
-	if floor_check()&&can_input&&velocity.y>0:
+	if floor_check()&&can_input&&velocity.y>=0:
 		velocity.y = 0
-		velocity.x -= velocity.x*delta*10*int(direction.x==0||sign(direction.x)!=sign(velocity.x))
 		double_jumped = false
 		change_animation("default")
+	velocity.x -= velocity.x*delta*(20*int(floor_check()))*int(direction.x==0||sign(direction.x)!=sign(velocity.x))
 	#if you hit a wall, it stops you from keeping inertia in that direction
 	if(is_on_wall()&&((velocity.x>0&&$R.is_colliding())||(velocity.x<0&&$L.is_colliding()))):
 		velocity.x=0
@@ -82,6 +81,8 @@ func check_inputs():
 		else:
 			double_jumped=false
 		velocity.y = -jump_force
+		direction.y = -1
+		position.y -= 1
 		change_animation("jump")
 		Global.load_audio("jump")
 	

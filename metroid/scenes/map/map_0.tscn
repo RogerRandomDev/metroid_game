@@ -14,7 +14,7 @@ tile_data = PoolIntArray( 0, 0, 2, 1, 0, 1, 2, 0, 0, 3, 0, 1, 4, 0, 0, 5, 0, 3, 
 [node name="check_event" parent="enter_points" index="0" instance=ExtResource( 2 )]
 position = Vector2( -16, 512 )
 scale = Vector2( 1, 4 )
-scene_to_enter = "map_11"
+scene_to_enter = "map_1"
 scene_enter_offset = Vector2( 32, 0 )
 scene_sign = Vector2( -1, 0 )
 
