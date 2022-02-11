@@ -22,8 +22,8 @@ scene_enter_offset = Vector2( 32, 0 )
 scene_sign = Vector2( -1, 0 )
 
 [node name="check_event5" parent="enter_points" index="1" instance=ExtResource( 2 )]
-position = Vector2( 1040, 544 )
-scale = Vector2( 1, 2 )
+position = Vector2( 1040, 528 )
+scale = Vector2( 1, 3 )
 scene_to_enter = "map_11"
 scene_enter_offset = Vector2( -32, 0 )
 scene_sign = Vector2( 1, 0 )

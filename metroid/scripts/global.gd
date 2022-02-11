@@ -1,10 +1,17 @@
 extends Node
 
+
+
+#sound effect data
 export(Array,int)var sound_count=[]
 export(Array,String)var sound_names=[]
 export(Array,int,-40,0)var sound_db=[]
+
+
 func _ready():
 	randomize()
+
+#plays the sound effects for the game
 func load_audio(audio_name):
 	var audio_id =sound_names.find(audio_name)
 	if sound_count[audio_id]!=0:audio_name+=str(round(rand_range(0.0,sound_count[audio_id])))

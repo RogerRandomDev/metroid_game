@@ -4,6 +4,6 @@
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
-sound_count = [ 2, 3, 2 ]
-sound_names = [ "hit_sound", "jump", "shoot" ]
-sound_db = [ 0, -5, -10 ]
+sound_count = [ 2, 3, 2, 1, 1 ]
+sound_names = [ "hit_sound", "jump", "shoot", "screen_shake", "puzzle_target" ]
+sound_db = [ 0, -5, -10, 0, -4 ]

@@ -21,8 +21,19 @@ var cur_animation = "default"
 func _ready():
 	can_input=true
 	store_stats()
+
+
+
+
+
+
+
+
+
+#runs every frame
 func _process(delta):
 	if !can_move:return
+	check_inputs()
 	check_cell(get_parent().get_cell_at_position(position))
 	#makes you wobble back and forth when walking if not spinning in air
 	if !spin:
@@ -40,7 +51,6 @@ func _process(delta):
 		velocity.x -= velocity.x*delta*10*int(direction.x==0||sign(direction.x)!=sign(velocity.x))
 		double_jumped = false
 		change_animation("default")
-	
 	#if you hit a wall, it stops you from keeping inertia in that direction
 	if(is_on_wall()&&((velocity.x>0&&$R.is_colliding())||(velocity.x<0&&$L.is_colliding()))):
 		velocity.x=0
@@ -50,8 +60,11 @@ func _process(delta):
 # warning-ignore:return_value_discarded
 	move_and_slide(velocity,Vector2.UP)
 
+
+var bounced_off_wall = false
+
 #inputs
-func _input(_event):
+func check_inputs():
 	#resets current velocity
 	direction=Vector2.ZERO
 	if !can_input:return
@@ -61,14 +74,14 @@ func _input(_event):
 		if(!floor_check()):
 			#checks if on wall to enable wall jumps
 			if((($L.is_colliding()||$R.is_colliding())&&!is_on_ceiling())):
-				velocity.x = (int($L.is_colliding())-int($R.is_colliding()))*move_speed
+				velocity.x = (int($L.is_colliding())-int($R.is_colliding()))*move_speed/2
+				direction.x = (int($L.is_colliding())-int($R.is_colliding()))/2
 			else:
 				#if not on wall, set it to a double jump
 				double_jumped=true
 		else:
 			double_jumped=false
 		velocity.y = -jump_force
-		velocity.x += direction.x*move_speed*2
 		change_animation("jump")
 		Global.load_audio("jump")
 	
@@ -79,6 +92,9 @@ func _input(_event):
 	else:if !Input.is_action_pressed("shoot")&&$PAnim.current_animation=="shoot":
 		$PAnim.stop(false)
 
+
+
+
 #fire bullet
 func shoot():
 	var n_bul = bullet.instance()
@@ -87,13 +103,18 @@ func shoot():
 	n_bul.direction = get_local_mouse_position().normalized()*256
 	get_parent().add_child(n_bul)
 
+
 #face the move direction
 func flip_sprite(val):$Psprite.flip_h=!val
+
+
+#changes current animation
 func change_animation(val):
 	cur_animation = val
 	#makes you spin in the air
 	if val=="jump":spin=true
 	else:spin=false
+
 
 #hurts the current entity, AKA the player#
 func hit(val):
@@ -106,6 +127,9 @@ func hit(val):
 		get_parent().get_node("scene_Anims").play("player_dead")
 		get_parent().reload_scene()
 	get_parent().update_player_health(health)
+
+
+
 ##
 #melee range for player, faster to do it on only player than on enemies as well,
 #so the player does the check for most interactions with themselves
@@ -125,10 +149,12 @@ func _on_melee_hurt_body_entered(body):
 		health=min(health+5,100)
 		get_parent().update_player_health(health)
 
+
 #finish animation in-case it decides to not work on its own#
-func _on_PAnim_animation_finished(_anim_name):
-	$PAnim.stop()
-	
+func _on_PAnim_animation_finished(_anim_name):$PAnim.stop()
+
+
+
 #checks the tile you are in to see what it is#
 func check_cell(cell_id):
 	#bounces if you are in lava#
@@ -136,9 +162,14 @@ func check_cell(cell_id):
 		velocity.y= -256
 		hit(1)
 
+
+
+
+
 #stores stats for player when they die#
 func store_stats():
 	stats_on_scene_enter=[health,position,get_parent().points]
+
 
 #updates stats when you die to respawn as you were when entering the level for the first time
 func load_stats():
@@ -147,5 +178,9 @@ func load_stats():
 	get_parent().points = stats_on_scene_enter[2]
 	get_parent().update_player_health(health)
 	velocity=Vector2.ZERO
+
+
+
+#normal on_floor failed so this fixed it for me
 func floor_check():
 	return $floor_check.is_colliding()

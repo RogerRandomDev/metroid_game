@@ -10,6 +10,7 @@ func _ready():
 	if position_in_parent==-1:
 		position_in_parent=get_position_in_parent()
 func get_hit():
+	Global.load_audio("puzzle_target")
 	triggered = true
 	var groups = get_groups()
 	for group in groups:

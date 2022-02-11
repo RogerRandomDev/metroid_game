@@ -15,6 +15,7 @@ func remove_cells(cell_array=[]):
 		get_parent().get_parent().get_node("TileMap").call_deferred('set_cellv',cell,-1)
 		get_parent().get_parent().get_parent().call_deferred('update_current_texture',cell,Color(0.25,0.25,0.25))
 func shake_screen(val):
+	Global.load_audio("screen_shake")
 	get_parent().get_parent().get_parent().get_node("Camera2D").add_trauma(val)
 
 
@@ -25,4 +26,4 @@ func trigger_animation():
 	$AnimationPlayer.playback_speed=1000
 	if $AnimationPlayer.has_animation("first_enter"):
 		$AnimationPlayer.play("first_enter")
-		$AnimationPlayer.set_deferred('current_animation_position',$AnimationPlayer.current_animation_length-0.25)
+		$AnimationPlayer.seek($AnimationPlayer.current_animation_length-0.375,true)
