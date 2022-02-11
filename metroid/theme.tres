@@ -1,6 +1,77 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [ext_resource path="res://fonts/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://textures/1-bit_UI_byBatuhanK.png" type="Texture" id=2]
+[ext_resource path="res://textures/grabber.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="ImageTexture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 2 )
+region_rect = Rect2( 264, 8, 24, 24 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 240, 80, 24, 24 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 2 )
+region_rect = Rect2( 90, 158, 106, 10 )
+margin_left = 2.0
+margin_right = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 90, 170, 106, 10 )
+margin_left = 6.0
+margin_right = 2.0
+margin_top = 3.0
+margin_bottom = 3.0
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [resource]
 default_font = ExtResource( 1 )
+Button/styles/disabled = SubResource( 7 )
+Button/styles/focus = SubResource( 7 )
+Button/styles/hover = SubResource( 7 )
+Button/styles/normal = SubResource( 7 )
+Button/styles/pressed = SubResource( 7 )
+CheckBox/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckBox/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckBox/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )
+CheckBox/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = null
+CheckBox/icons/checked = SubResource( 4 )
+CheckBox/icons/checked_disabled = SubResource( 4 )
+CheckBox/icons/radio_checked = SubResource( 4 )
+CheckBox/icons/radio_checked_disabled = SubResource( 4 )
+CheckBox/icons/radio_unchecked = SubResource( 4 )
+CheckBox/icons/radio_unchecked_disabled = SubResource( 4 )
+CheckBox/icons/unchecked = SubResource( 4 )
+CheckBox/icons/unchecked_disabled = SubResource( 4 )
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = SubResource( 2 )
+CheckBox/styles/hover_pressed = SubResource( 3 )
+CheckBox/styles/normal = SubResource( 2 )
+CheckBox/styles/pressed = SubResource( 3 )
+HSlider/icons/grabber = ExtResource( 3 )
+HSlider/icons/grabber_disabled = ExtResource( 3 )
+HSlider/icons/grabber_highlight = ExtResource( 3 )
+HSlider/styles/grabber_area = SubResource( 6 )
+HSlider/styles/grabber_area_highlight = SubResource( 6 )
+HSlider/styles/slider = SubResource( 1 )

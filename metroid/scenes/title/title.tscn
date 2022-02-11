@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://textures/entities.png" type="Texture" id=2]
 [ext_resource path="res://scripts/title.gd" type="Script" id=3]
+[ext_resource path="res://textures/tile_base.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "open_game"
@@ -185,23 +186,89 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="settings_page" type="Control" parent="."]
+[node name="settings_page" type="NinePatchRect" parent="."]
 margin_top = 616.0
-margin_right = 40.0
-margin_bottom = 656.0
+margin_right = 1024.0
+margin_bottom = 1224.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 432, 48, 48, 48 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label2" type="Label" parent="settings_page"]
-margin_right = 128.0
-margin_bottom = 16.0
+[node name="Label" type="Label" parent="settings_page"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 84.0
+margin_bottom = 28.0
 rect_scale = Vector2( 4, 4 )
 theme = ExtResource( 1 )
-text = "1-Bit Game"
+text = "SETTINGS"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBoxContainer" type="VBoxContainer" parent="settings_page"]
+margin_left = 12.0
+margin_top = 96.0
+margin_right = 524.0
+margin_bottom = 596.0
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="Label" parent="settings_page/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 48 )
+theme = ExtResource( 1 )
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="settings_page/VBoxContainer/V"]
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+max_value = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FS" type="Label" parent="settings_page/VBoxContainer"]
+margin_top = 52.0
+margin_right = 512.0
+margin_bottom = 68.0
+theme = ExtResource( 1 )
+text = "FullScreen"
+
+[node name="FullScreen" type="CheckBox" parent="settings_page/VBoxContainer/FS"]
+margin_left = 96.0
+margin_right = 120.0
+margin_bottom = 24.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="settings_page"]
+margin_left = 16.0
+margin_top = 560.0
+margin_right = 52.0
+margin_bottom = 580.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 1 )
+text = "BACK"
+
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="main_page/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="main_page/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="settings_page/back" to="." method="_on_back_pressed"]

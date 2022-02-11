@@ -143,3 +143,4 @@ func load_stats():
 	position = stats_on_scene_enter[1]
 	get_parent().points = stats_on_scene_enter[2]
 	get_parent().update_player_health(health)
+	velocity=Vector2.ZERO

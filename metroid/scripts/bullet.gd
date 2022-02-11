@@ -32,4 +32,5 @@ func _on_bullet_body_entered(body):
 			
 			if body.get_cellv(cell_pos+Vector2(x,y))==4:
 				body.set_cellv(cell_pos+Vector2(x,y),-1)
+	if(body.is_in_group("puzzle_shot")):body.get_hit()
 	self.queue_free()

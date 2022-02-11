@@ -130,5 +130,5 @@ func randomize_texture():
 		Vector2(
 			((10*int(randomized_id%2==0))+
 			(30*int(max(round(randomized_id/14-0.5),0)))),
-			10*(randomized_id%14)),Vector2(10,10)
+			10*(randomized_id%14)-1),Vector2(10,12)
 			)

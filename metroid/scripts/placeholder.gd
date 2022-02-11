@@ -12,8 +12,8 @@ func remove_self():
 func remove_cells(cell_array=[]):
 	#removes cells from current map
 	for cell in cell_array:
-		get_parent().get_parent().get_node("TileMap").set_cellv(cell,-1)
-		get_parent().get_parent().get_parent().update_current_texture(cell,Color(0.25,0.25,0.25))
+		get_parent().get_parent().get_node("TileMap").call_deferred('set_cellv',cell,-1)
+		get_parent().get_parent().get_parent().call_deferred('update_current_texture',cell,Color(0.25,0.25,0.25))
 func shake_screen(val):
 	get_parent().get_parent().get_parent().get_node("Camera2D").add_trauma(val)
 

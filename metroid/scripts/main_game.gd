@@ -97,9 +97,11 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 				
 				if n_ent.has_method("trigger_animation"):
 					n_ent.trigger_animation()
+				elif n_ent.has_method("open_path"):
+					n_ent.open_path()
 				else:
-					
 					n_ent.queue_free()
+				
 	
 	#moves player to enter position and creates the new scene
 	$Player.position=enter_pos

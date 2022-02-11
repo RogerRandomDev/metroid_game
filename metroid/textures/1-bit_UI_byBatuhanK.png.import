@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1-bit with outline_part-4.png-badae4881dc8669c341f44aff1a51a6a.stex"
+path="res://.import/1-bit_UI_byBatuhanK.png-6a794d54a24d722d79cf63b2382d0134.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/1-bit with outline/1-bit with outline_part-4.png"
-dest_files=[ "res://.import/1-bit with outline_part-4.png-badae4881dc8669c341f44aff1a51a6a.stex" ]
+source_file="res://textures/1-bit_UI_byBatuhanK.png"
+dest_files=[ "res://.import/1-bit_UI_byBatuhanK.png-6a794d54a24d722d79cf63b2382d0134.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

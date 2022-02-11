@@ -16,3 +16,9 @@ func _on_settings_pressed():
 	$Tween.interpolate_property($main_page,"rect_position",Vector2.ZERO,Vector2(0,616),0.5,Tween.TRANS_CUBIC)
 	$Tween.interpolate_property($settings_page,"rect_position",Vector2(0,616),Vector2.ZERO,0.5,Tween.TRANS_CUBIC)
 	$Tween.start()
+
+
+func _on_back_pressed():
+	$Tween.interpolate_property($settings_page,"rect_position",Vector2.ZERO,Vector2(0,616),0.5,Tween.TRANS_CUBIC)
+	$Tween.interpolate_property($main_page,"rect_position",Vector2(0,616),Vector2.ZERO,0.5,Tween.TRANS_CUBIC)
+	$Tween.start()

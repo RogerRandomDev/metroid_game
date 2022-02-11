@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/bullet.gd" type="Script" id=1]
-[ext_resource path="res://textures/samus.png" type="Texture" id=2]
+[ext_resource path="res://textures/tile_base.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -16,6 +16,6 @@ shape = SubResource( 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 219, 68, 8, 8 )
+region_rect = Rect2( 380, 316, 9, 9 )
 
 [connection signal="body_entered" from="." to="." method="_on_bullet_body_entered"]
