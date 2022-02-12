@@ -45,7 +45,7 @@ tracks/2/keys = {
 "args": [ 0.125 ],
 "method": "shake_screen"
 }, {
-"args": [ [ Vector2( 31, 16 ), Vector2( 31, 17 ) ] ],
+"args": [ [ Vector2( 31, 16 ), Vector2( 31, 17 ), Vector2( 31, 15 ) ] ],
 "method": "remove_cells"
 }, {
 "args": [  ],
@@ -67,10 +67,9 @@ scene_enter_offset = Vector2( 64, 0 )
 scene_sign = Vector2( -1, 0 )
 
 [node name="check_event2" parent="enter_points" index="1" instance=ExtResource( 2 )]
-position = Vector2( 1040, 544 )
-scale = Vector2( 1, 2 )
-scene_to_enter = "map_4"
-scene_enter_point = 1
+position = Vector2( 1040, 524 )
+scale = Vector2( 1, 3 )
+scene_to_enter = "map_12"
 scene_enter_offset = Vector2( -32, 0 )
 scene_sign = Vector2( 1, 0 )
 

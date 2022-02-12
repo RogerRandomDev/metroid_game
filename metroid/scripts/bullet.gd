@@ -25,6 +25,8 @@ func _on_bullet_body_entered(body):
 	
 	if body.is_in_group(fired_by):return
 	if(body.has_method("hit")):body.hit(damage)
+	if fired_by!="player":
+		self.queue_free();return
 	if(body.get_class()=="TileMap"):
 		var cell_pos = position/32
 		cell_pos.x = round(cell_pos.x)

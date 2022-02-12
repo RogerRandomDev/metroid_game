@@ -19,6 +19,7 @@ scene_enter_point = 1
 scene_enter_offset = Vector2( -32, 0 )
 scene_enter_size = Vector2( 74, 19 )
 scene_sign = Vector2( 1, 0 )
+increase_scene_offset_by_value = Vector2( -138, 38 )
 
 [node name="check_event3" parent="enter_points" index="1" instance=ExtResource( 2 )]
 position = Vector2( 64, 624 )

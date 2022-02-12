@@ -46,13 +46,16 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 	#player position is changed by these and also gets the room tile size distance from the first room
 	var p_pos = $Player.position
 	var entered_from = new_scene.get_node("enter_points").get_child(player_enter_point)
-	current_point_offset+=increase_offset_by
+	if increase_offset_by!=Vector2.ZERO:
+		current_point_offset=increase_offset_by
 	var enter_pos = entered_from.scene_enter_offset
 	
 	#used to generate the map sprites for the minimap view
 	if(!already_on_map.has(scene_name)):
 		already_on_map.append(scene_name)
-		generate_map(new_scene,view_size,sign_of_scene)
+		var n_sprite = generate_map(new_scene,view_size,sign_of_scene)
+		if increase_offset_by!=Vector2.ZERO:
+			n_sprite.position = increase_offset_by
 	##
 	#this prevents the minimap from moving excessively when entering a large room then a small one
 	#i know why it did that but i would have to rewrite most of this to fix it,
@@ -65,10 +68,11 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 		prev_scene_offset=current_point_offset
 		current_point_offset+=view_size*sign_of_scene
 		my_size=view_size
-	
+
 	#updates map position so it centers on the current room
 	$CanvasLayer/map_points/Viewport/Node2D.position= -current_point_offset*2+Vector2(128,75)-view_size
-	
+	if increase_offset_by!=Vector2.ZERO:
+		$CanvasLayer/map_points/Viewport/Node2D.position = -increase_offset_by*2-view_size+Vector2(128,75)
 	#makes it so if the enter offset for the room is zero on an axis,
 	#it will use the current position on that axis
 	if(enter_pos.x==0):enter_pos.x=p_pos.x;else:enter_pos.x=entered_from.enter_position().x
@@ -110,6 +114,8 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 	$Camera2D.camera_limits=(view_size-Vector2(32,19))*32
 	$Camera2D.active=false
 	last_scene=get_node_or_null("last_scene")
+	if increase_offset_by!=Vector2.ZERO:
+		current_point_offset=increase_offset_by
 	##
 	#moves last scene to the side it should be on
 	#to make sure that the camera transition is smooth
@@ -139,6 +145,7 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 	prev_scene=new_scene
 	#store player stats when entering the scene
 	$Player.store_stats()
+	print(current_point_offset)
 	
 
 func _on_Tween_tween_all_completed():
@@ -184,7 +191,7 @@ func generate_map(scene_from,cur_Scene_size,_scene_sign):
 	map_sprite.position = current_point_offset+cur_Scene_size*_scene_sign
 	map_sprite.centered = false
 	current_texture = [map_sprite,img]
-
+	return map_sprite
 var cur_Scene_data = {}
 
 #allows you to change the pixel in a texture to a specific color in the minimap

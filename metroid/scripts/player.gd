@@ -45,7 +45,7 @@ func _process(delta):
 	
 	velocity += direction*delta*move_speed*4
 	velocity.y+=gravity*delta
-	if floor_check()&&can_input&&velocity.y>=0:
+	if (floor_check()||is_on_floor())&&can_input&&velocity.y>=0:
 		velocity.y = 0
 		double_jumped = false
 		change_animation("default")
@@ -74,7 +74,7 @@ func check_inputs():
 			#checks if on wall to enable wall jumps
 			if((($L.is_colliding()||$R.is_colliding())&&!is_on_ceiling())):
 				velocity.x = (int($L.is_colliding())-int($R.is_colliding()))*move_speed/2
-				direction.x = (int($L.is_colliding())-int($R.is_colliding()))/2
+				direction.x = float(int($L.is_colliding())-int($R.is_colliding()))/2
 			else:
 				#if not on wall, set it to a double jump
 				double_jumped=true

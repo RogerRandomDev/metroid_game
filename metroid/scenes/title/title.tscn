@@ -267,27 +267,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="V" type="Label" parent="settings_page/VBoxContainer"]
-margin_right = 512.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 0, 48 )
-theme = ExtResource( 1 )
-text = "Volume"
-
-[node name="Volume" type="HSlider" parent="settings_page/VBoxContainer/V"]
-margin_top = 16.0
-margin_right = 256.0
-margin_bottom = 32.0
-theme = ExtResource( 1 )
-max_value = 20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="FS" type="Label" parent="settings_page/VBoxContainer"]
-margin_top = 52.0
 margin_right = 512.0
-margin_bottom = 68.0
+margin_bottom = 16.0
 theme = ExtResource( 1 )
 text = "FullScreen"
 

@@ -6,9 +6,13 @@ var triggered = false
 export(Array,Vector2)var remove_cells_on_complete=[]
 export(String)var method_on_complete=""
 export(int)var position_in_parent=-1
+
+#grabs its position id to remove when complete
 func _ready():
 	if position_in_parent==-1:
 		position_in_parent=get_position_in_parent()
+
+#runs the trigger for its hit if it is triggered
 func get_hit():
 	Global.load_audio("puzzle_target")
 	triggered = true
@@ -35,10 +39,14 @@ func get_hit():
 			for item in items:
 				item.get_parent().get_parent().get_parent().remove_char_from_scene(item.position_in_parent)
 				item.queue_free()
+	#prevents getting hit twice
 	$CollisionShape2D.set_deferred('disabled',true)
+	#if it is the only trigger in its group, opens the path manually
 	if groups.size()==1&&triggered:
 		open_path()
 		get_parent().get_parent().get_parent().remove_char_from_scene(position_in_parent)
+
+#opens the path for itself
 func open_path():
 	var map = get_parent().get_parent().get_node("TileMap")
 	for cell in remove_cells_on_complete:
