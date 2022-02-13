@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="metroid"
+config/name="1-bit"
 run/main_scene="res://scenes/title/title.tscn"
 config/icon="res://icon.png"
 

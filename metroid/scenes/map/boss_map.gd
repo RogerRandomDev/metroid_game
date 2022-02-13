@@ -12,6 +12,6 @@ func _ready():
 
 
 func change_scene(scene_name):
-	Global.play_music("base_song",4.0)
+	Global.play_music("YoullBeMissed",4.0)
 # warning-ignore:return_value_discarded
-	get_tree().change_scene_to(load("res://Scenes/"+scene_name+".tscn"))
+	get_tree().change_scene_to(load("res://scenes/"+scene_name+".tscn"))

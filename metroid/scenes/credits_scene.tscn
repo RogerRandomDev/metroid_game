@@ -147,3 +147,5 @@ margin_right = 288.0
 margin_bottom = 608.0
 theme = ExtResource( 2 )
 text = "PRESS ANY KEY TO RETURN TO TITLE"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

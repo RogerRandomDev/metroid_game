@@ -87,9 +87,10 @@ margin_top = 256.0
 margin_right = 576.0
 margin_bottom = 270.0
 theme = ExtResource( 5 )
+text = "NO! HOW IS THIS POSSIBLE!"
 align = 1
 autowrap = true
-percent_visible = 0.292929
+percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

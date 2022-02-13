@@ -13,4 +13,5 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/title/title.tscn")

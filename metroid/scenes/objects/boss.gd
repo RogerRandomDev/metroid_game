@@ -110,6 +110,7 @@ func random_position():
 func random_enemy_position():
 	return Vector2(round(rand_range(1.0,28.0))*32,560)
 
+# warning-ignore:unused_argument
 func hit(val):
 	if can_hurt:
 		health -= 1
