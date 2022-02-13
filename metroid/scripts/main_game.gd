@@ -13,6 +13,7 @@ func _ready():
 	$Player.position = Vector2(932,457)
 	$Camera2D.active= true
 	$Player.can_move=true
+	Global.play_music("base_song")
 var last_scene = null
 var cur_Scene_name=""
 var prev_scene_offset=Vector2.ZERO
@@ -145,7 +146,6 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 	prev_scene=new_scene
 	#store player stats when entering the scene
 	$Player.store_stats()
-	print(current_point_offset)
 	
 
 func _on_Tween_tween_all_completed():

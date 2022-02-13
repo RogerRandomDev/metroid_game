@@ -26,8 +26,8 @@ margin_top = -32.0
 margin_right = 64.0
 margin_bottom = 3.0
 theme = ExtResource( 2 )
-text = "Energy Cell
-+5 EN"
+text = "Healing Orb
++5HP"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

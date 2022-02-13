@@ -43,7 +43,7 @@ margin_right = 542.0
 margin_bottom = 499.0
 theme = ExtResource( 4 )
 text = "Left Mouse 
-To Fire Plasma"
+To Fire Magic"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -96,7 +96,7 @@ margin_right = 1000.0
 margin_bottom = 143.0
 theme = ExtResource( 4 )
 text = "
-Energy cells are dropped after killing an enemy and heal you"
+Healing Orbs are dropped after killing an enemy and heal you"
 align = 1
 autowrap = true
 __meta__ = {

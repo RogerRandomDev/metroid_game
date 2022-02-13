@@ -6,7 +6,9 @@ var fired_by = null
 var damage = 1
 #plays firing sound on load
 func _ready():
-	Global.load_audio("shoot")
+	update()
+	if !get_overlapping_bodies().size()!=0:
+		Global.load_audio("shoot")
 #moves by direction value
 #and rotates by a set value
 func _process(delta):

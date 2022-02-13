@@ -28,6 +28,7 @@ tracks/0/keys = {
 }
 
 [node name="Ent" type="KinematicBody2D" groups=["enemy"]]
+collision_layer = 0
 script = ExtResource( 2 )
 max_move_delay = 5.0
 health = 3

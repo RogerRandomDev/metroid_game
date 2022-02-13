@@ -26,3 +26,22 @@ func load_audio(audio_name):
 func remove_sound(sound_id):
 	sound_id.disconnect("finished",self,"remove_sound")
 	sound_id.queue_free()
+var cur_music = ""
+func play_music(name_of,transition_time=1.5):
+	if cur_music == name_of:return
+	cur_music = name_of
+	var previous_music =get_node_or_null("music")
+	var remove_music = get_node_or_null("last_music")
+	if remove_music!=null:
+		remove_music.queue_free()
+	if previous_music!=null:
+		previous_music.name="last_music"
+	var music_new = AudioStreamPlayer.new()
+	music_new.stream = load("res://Audio/Music/"+name_of+".mp3")
+	music_new.name = "music"
+	add_child(music_new)
+	if previous_music!=null:
+		$Tween.interpolate_property(previous_music,"volume_db",previous_music.volume_db,-40,transition_time,Tween.TRANS_CUBIC)
+	$Tween.interpolate_property(music_new,"volume_db",-40,0,transition_time,Tween.TRANS_CUBIC)
+	music_new.play()
+	$Tween.start()

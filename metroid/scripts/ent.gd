@@ -25,7 +25,7 @@ var moved_dist=0
 var player = null
 const heal_item = preload("res://scenes/objects/item.tscn")
 export(bool)var random_look=false
-
+export(bool)var walk_at_player
 
 func _ready():
 	randomize()
@@ -36,7 +36,10 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	if shoots:$AnimationPlayer.play("shoot")
 func _process(delta):
-	
+	if walk_at_player:
+# warning-ignore:return_value_discarded
+		move_and_slide((position-player.position).normalized()*32*Vector2(-1,0),Vector2.UP)
+		return
 	if $Timer.time_left!=0:return
 	var travel_dist = move_speed*delta
 	#curved motion lets it move in an arc
@@ -69,6 +72,7 @@ var non_continuous=false
 #you get killed and freed from the scene
 ##
 func hit(val):
+	if !is_processing():return
 	health-=val
 	if health<=0:
 		if !non_continuous:get_parent().get_parent().get_parent().remove_char_from_scene(parent_point)
