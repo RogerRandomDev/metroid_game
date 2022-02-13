@@ -2,7 +2,7 @@
 
 [ext_resource path="res://textures/entities.png" type="Texture" id=1]
 [ext_resource path="res://scenes/objects/border_shader.tres" type="Material" id=2]
-[ext_resource path="res://scenes/objects/boss.gd" type="Script" id=3]
+[ext_resource path="res://scripts/boss.gd" type="Script" id=3]
 [ext_resource path="res://scenes/objects/bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/objects/ent.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/1-bit_UI_byBatuhanK.png" type="Texture" id=6]
@@ -139,6 +139,7 @@ tracks/1/keys = {
 }
 
 [node name="boss_enemy" type="KinematicBody2D" groups=["boss"]]
+collision_layer = 0
 script = ExtResource( 3 )
 Bullet_scene = ExtResource( 4 )
 Enemy_Scene = ExtResource( 5 )

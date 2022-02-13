@@ -9,8 +9,8 @@ var prev_scene = null
 var prev_scene_size = Vector2(32,19)
 var points = 0
 func _ready():
-	load_next_scene("map_0",my_size,0,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO)
-	$Player.position = Vector2(932,457)
+	load_next_scene("boss_map",my_size,0,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO)
+	$Player.position = Vector2(932,512)
 	$Camera2D.active= true
 	$Player.can_move=true
 	Global.play_music("base_song")

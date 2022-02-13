@@ -26,7 +26,7 @@ var player = null
 const heal_item = preload("res://scenes/objects/item.tscn")
 export(bool)var random_look=false
 export(bool)var walk_at_player
-
+var can_give_healing=true
 func _ready():
 	randomize()
 	#lets the enemy change its texture#
@@ -77,7 +77,7 @@ func hit(val):
 	if health<=0:
 		if !non_continuous:get_parent().get_parent().get_parent().remove_char_from_scene(parent_point)
 		#drops healing objects at random#
-		if rand_range(0.0,1.0)>0.75:generate_heal_drop()
+		if rand_range(0.0,1.0)>0.75&&can_give_healing:generate_heal_drop()
 		self.queue_free()
 
 
