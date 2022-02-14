@@ -34,10 +34,10 @@ func load_next_action():
 		$AnimationPlayer.play("vulnerable_time")
 		can_hurt=true
 		invul_next=5+((5-health))
-		$AnimationPlayer.playback_speed = 0.5
+		$AnimationPlayer.playback_speed = Global.get_boss_speed()*0.5
 		return
 	emitting_flames=false
-	$AnimationPlayer.playback_speed=speed_of_anim_mult
+	$AnimationPlayer.playback_speed=Global.get_boss_speed()*speed_of_anim_mult
 	var chosen_action = "none"
 	while chosen_action=="none"||previous_action_set.has(chosen_action):
 		chosen_action=action_set[round(rand_range(0.0,action_set.size()-1))]
@@ -61,11 +61,11 @@ func Move_To_Position():
 	$Tween.interpolate_property(self,"position",position,target_position,travel_time/speed_of_anim_mult,Tween.TRANS_CUBIC)
 	$Tween.start()
 	invul_next+=1
-	$AnimationPlayer.playback_speed=1/max(travel_time,0.05)*speed_of_anim_mult
+	$AnimationPlayer.playback_speed=Global.get_boss_speed()*1/max(travel_time,0.05)*speed_of_anim_mult
 func Summon_Enemies():
 	if get_parent().get_child_count()<max_enemies:
 		$AnimationPlayer.play("summon_enemies")
-		$AnimationPlayer.playback_speed = 0.5*speed_of_anim_mult
+		$AnimationPlayer.playback_speed = Global.get_boss_speed()*0.5*speed_of_anim_mult
 func create_enemy():
 	var enemy = Enemy_Scene.instance()
 	enemy.position = random_enemy_position()+Vector2(0,64)
@@ -100,7 +100,7 @@ func enable_enemy(tween,enemy,enemy_icon):
 	enemy.set_physics_process(true)
 func Fire_Bullets():
 	$AnimationPlayer.play("shoot_bullets")
-	$AnimationPlayer.playback_speed=1.5*speed_of_anim_mult
+	$AnimationPlayer.playback_speed=Global.get_boss_speed()*1.5*speed_of_anim_mult
 func create_bullet(id):
 	var tiles = get_parent().get_parent().get_node("TileMap")
 	if tiles.get_cellv(tiles.world_to_map((position+Vector2(sin(id*PI*2/max_bullets),cos(id*PI*2/max_bullets))*32+Vector2(16,16))/2))!=-1:return
@@ -165,7 +165,7 @@ func reset_invulnerability():
 		child.visible=true
 func choose_actions():
 	$AnimationPlayer.play("action_chooser")
-	$AnimationPlayer.playback_speed=1.0*speed_of_anim_mult
+	$AnimationPlayer.playback_speed=Global.get_boss_speed()*1.0*speed_of_anim_mult
 func delay_animation():
 	$AnimationPlayer.play("action_chooser")
-	$AnimationPlayer.playback_speed=rand_range(0.5,1.0)*max(speed_of_anim_mult/1.25,1)
+	$AnimationPlayer.playback_speed=Global.get_boss_speed()*rand_range(0.5,1.0)*max(speed_of_anim_mult/1.25,1)

@@ -34,7 +34,9 @@ func _ready():
 		randomize_texture()
 	#grabs who the player is to know who to shoot at
 	player = get_tree().get_nodes_in_group("player")[0]
-	if shoots:$AnimationPlayer.play("shoot")
+	if shoots:
+		$AnimationPlayer.play("shoot")
+		$AnimationPlayer.playback_speed=Global.enemy_speed()
 func _process(delta):
 	if walk_at_player:
 # warning-ignore:return_value_discarded

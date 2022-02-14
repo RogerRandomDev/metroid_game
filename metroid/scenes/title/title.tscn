@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://textures/entities.png" type="Texture" id=2]
@@ -139,6 +139,8 @@ tracks/9/keys = {
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
+[sub_resource type="ButtonGroup" id=7]
+
 [node name="main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -167,6 +169,75 @@ custom_styles/focus = SubResource( 4 )
 custom_styles/disabled = SubResource( 5 )
 custom_styles/normal = SubResource( 6 )
 text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="easy" type="Button" parent="main_page/Button"]
+margin_left = -96.0
+margin_top = -32.0
+margin_right = -56.0
+margin_bottom = -16.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+toggle_mode = true
+group = SubResource( 7 )
+text = "EASY"
+
+[node name="normal" type="Button" parent="main_page/Button"]
+margin_left = -39.3333
+margin_top = -32.0
+margin_right = 14.6667
+margin_bottom = -16.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+toggle_mode = true
+pressed = true
+group = SubResource( 7 )
+text = "NORMAL"
+
+[node name="hard" type="Button" parent="main_page/Button"]
+margin_left = 32.0
+margin_top = -32.0
+margin_right = 72.0
+margin_bottom = -16.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+toggle_mode = true
+group = SubResource( 7 )
+text = "HARD"
+
+[node name="rage" type="Button" parent="main_page/Button"]
+margin_left = 96.0
+margin_top = -32.0
+margin_right = 186.0
+margin_bottom = -16.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+toggle_mode = true
+group = SubResource( 7 )
+text = "RAGE"
+
+[node name="perfection" type="Button" parent="main_page/Button"]
+margin_left = -25.0
+margin_top = -12.0
+margin_right = 65.0
+margin_bottom = 4.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+custom_colors/font_color = Color( 0.266667, 0.266667, 0.266667, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+toggle_mode = true
+group = SubResource( 7 )
+text = "PERFECTION"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -295,6 +366,11 @@ text = "BACK"
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="main_page/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="main_page/Button/easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="main_page/Button/normal" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="main_page/Button/hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="main_page/Button/rage" to="." method="_on_rage_pressed"]
+[connection signal="pressed" from="main_page/Button/perfection" to="." method="_on_perfection_pressed"]
 [connection signal="pressed" from="main_page/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="main_page/quit" to="." method="_on_quit_pressed"]
 [connection signal="toggled" from="settings_page/VBoxContainer/FS/FullScreen" to="." method="_on_FullScreen_toggled"]

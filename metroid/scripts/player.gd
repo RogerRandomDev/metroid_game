@@ -20,6 +20,8 @@ export var can_input=true
 var cur_animation = "default"
 func _ready():
 	can_input=true
+	health = Global.max_health()
+	get_parent().update_player_health(health)
 	store_stats()
 
 
@@ -126,7 +128,8 @@ func hit(val):
 	get_parent().get_node("Camera2D").add_trauma(val/20+0.125)
 	if health <= 0:
 		get_parent().get_node("scene_Anims").play("player_dead")
-		get_parent().reload_scene()
+		if Global.cur_difficulty=="PERFECTION":get_parent().set_scene_to_start()
+		else:get_parent().reload_scene()
 	get_parent().update_player_health(health)
 
 
@@ -147,7 +150,7 @@ func _on_melee_hurt_body_entered(body):
 	#pick-up a healing item
 	if body.is_in_group("heal_item"):
 		body.queue_free()
-		health=min(health+5,100)
+		health=min(health+5,Global.max_health())
 		get_parent().update_player_health(health)
 
 

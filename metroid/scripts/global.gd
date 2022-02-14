@@ -7,7 +7,14 @@ export(Array,int)var sound_count=[]
 export(Array,String)var sound_names=[]
 export(Array,int,-40,10)var sound_db=[]
 
-
+var difficulty_settings={
+	"EASY":{"max_hp":250,"enemy_fire_speed":0.5,"boss_fight_speed":0.75},
+	"NORMAL":{"max_hp":100,"enemy_fire_speed":1.0,"boss_fight_speed":1.0},
+	"HARD":{"max_hp":75,"enemy_fire_speed":1.25,"boss_fight_speed":1.125},
+	"RAGE":{"max_hp":1,"enemy_fire_speed":1.5,"boss_fight_speed":1.25},
+	"PERFECTION":{"max_hp":1,"enemy_fire_speed":2.5,"boss_fight_speed":1.75}
+}
+var cur_difficulty="NORMAL"
 func _ready():
 	randomize()
 
@@ -45,3 +52,9 @@ func play_music(name_of,transition_time=1.5):
 	$Tween.interpolate_property(music_new,"volume_db",-40,0,transition_time,Tween.TRANS_CUBIC)
 	music_new.play()
 	$Tween.start()
+
+
+#returns the current difficulty stats
+func max_health():return difficulty_settings[cur_difficulty]["max_hp"]
+func enemy_speed():return difficulty_settings[cur_difficulty]["enemy_fire_speed"]
+func get_boss_speed():return difficulty_settings[cur_difficulty]["boss_fight_speed"]

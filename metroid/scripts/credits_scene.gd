@@ -8,7 +8,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if Global.cur_difficulty=="PERFECTION":
+		$Label5.text="|101|Not what you just did|101|"
 
 
 func _input(event):

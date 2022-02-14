@@ -31,3 +31,10 @@ func _on_FullScreen_toggled(button_pressed):
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+#sets the difficulty
+func _on_easy_pressed():Global.cur_difficulty="EASY"
+func _on_normal_pressed():Global.cur_difficulty="NORMAL"
+func _on_hard_pressed():Global.cur_difficulty="HARD"
+func _on_rage_pressed():Global.cur_difficulty="RAGE"
+func _on_perfection_pressed():Global.cur_difficulty="PERFECTION"

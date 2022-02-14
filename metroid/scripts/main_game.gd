@@ -110,7 +110,7 @@ func load_next_scene(scene_name,view_size,player_enter_point,my_position,_my_off
 	
 	#moves player to enter position and creates the new scene
 	$Player.position=enter_pos
-	add_child(new_scene)
+	call_deferred('add_child',new_scene)
 	#updates camera range and stops it from updating itself
 	$Camera2D.camera_limits=(view_size-Vector2(32,19))*32
 	$Camera2D.active=false
@@ -250,3 +250,16 @@ func reload_scene():
 ##
 func update_player_health(val):
 	$CanvasLayer/stat_panel/HP_label.text = str(val)
+
+
+#perfection mode returns to start
+func set_scene_to_start():
+	stored_scenes = {}
+	load_next_scene("map_0",Vector2(32,19),1,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO,Vector2.ZERO)
+	current_point_offset=Vector2.ZERO
+	for map_sprite in $CanvasLayer/map_points/Viewport/Node2D.get_children():
+		map_sprite.queue_free()
+	already_on_map=[]
+	$Player.set_deferred('position',Vector2(932,512))
+	$Player.health=1
+	$Player.store_stats()

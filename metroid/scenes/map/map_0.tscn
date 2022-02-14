@@ -18,6 +18,12 @@ scene_to_enter = "map_1"
 scene_enter_offset = Vector2( 32, 0 )
 scene_sign = Vector2( -1, 0 )
 
+[node name="check_event2" parent="enter_points" index="1" instance=ExtResource( 2 )]
+position = Vector2( 808, 608 )
+scene_to_enter = "map_1"
+scene_enter_offset = Vector2( 32, -48 )
+scene_sign = Vector2( 0, 0 )
+
 [node name="Ent" parent="Entities" index="0" instance=ExtResource( 3 )]
 position = Vector2( 176, 560 )
 crawl_on_floor = true
