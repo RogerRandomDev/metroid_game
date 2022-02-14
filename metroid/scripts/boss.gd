@@ -30,7 +30,6 @@ func load_next_action():
 	invul_next-=1
 	if invul_next!=5+((5-health)):
 		$Protecting_orbs.get_child(invul_next).visible = false
-		print($Protecting_orbs.get_child(invul_next).name)
 	if invul_next<=0:
 		$AnimationPlayer.play("vulnerable_time")
 		can_hurt=true
@@ -48,7 +47,9 @@ func load_next_action():
 	can_hurt=true
 	for child in $Protecting_orbs.get_children():
 		if child.visible:can_hurt=false
-	
+	#removes the tweens that get stuck after their use
+	#not sure why they get stuck, but this will fix it for you
+	for child in get_children():if child.get_class()=="Tween"&&child.name!="Tween":child.queue_free()
 
 func Move_To_Position():
 	var tiles=get_parent().get_parent().get_node("TileMap")
@@ -151,7 +152,7 @@ func hit(val):
 			get_parent().get_parent().get_node("misc/Label/AnimationPlayer").play("boss_death")
 			for child in get_parent().get_children():
 				if child!=self:child.queue_free()
-		speed_of_anim_mult = pow(max((5.0/health)/4,1),1.125)
+		speed_of_anim_mult = pow(max((5.0/max(health,1))/4,1),1.1625)
 		if speed_of_anim_mult > 1:
 			max_enemies= round(speed_of_anim_mult*4)+6
 
@@ -167,4 +168,4 @@ func choose_actions():
 	$AnimationPlayer.playback_speed=1.0*speed_of_anim_mult
 func delay_animation():
 	$AnimationPlayer.play("action_chooser")
-	$AnimationPlayer.playback_speed=rand_range(0.5,1.0)*speed_of_anim_mult
+	$AnimationPlayer.playback_speed=rand_range(0.5,1.0)*max(speed_of_anim_mult/1.25,1)
